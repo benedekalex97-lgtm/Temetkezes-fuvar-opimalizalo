@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Felületek — törtfehér és világosszürke */
+  --color-canvas: #f4f3ef;
+  --color-surface: #ffffff;
+  --color-subtle: #f0efea;
+  --color-sunken: #e9e8e2;
+  --color-line: #e1dfd8;
+  --color-line-strong: #cbc8bf;
+
+  /* Szöveg */
+  --color-ink: #1b2a2f;
+  --color-ink-2: #46555a;
+  --color-ink-3: #758288;
+
+  /* Elsődleges: mély kékeszöld / palakék */
+  --color-primary: #1d5461;
+  --color-primary-strong: #143e48;
+  --color-primary-soft: #e3edef;
+  --color-primary-line: #b9d0d5;
+
+  /* Sürgős: visszafogott bordó */
+  --color-urgent: #8b2c3a;
+  --color-urgent-strong: #6f1f2c;
+  --color-urgent-soft: #f7e8ea;
+  --color-urgent-line: #e3bcc2;
+
+  /* Figyelmeztetés: borostyán */
+  --color-warn: #9a5f06;
+  --color-warn-soft: #fbf0da;
+  --color-warn-line: #ecd09a;
+
+  /* Rendben */
+  --color-ok: #2d6a4d;
+  --color-ok-soft: #e5f0e9;
+  --color-ok-line: #bcd8c7;
+
+  /* Járműszínek */
+  --color-j01: #0f766e;
+  --color-j02: #3f5aa6;
+  --color-j03: #8a5a9e;
+
+  --shadow-card: 0 1px 2px rgb(27 42 47 / 0.04), 0 1px 1px rgb(27 42 47 / 0.03);
+  --shadow-raised: 0 8px 24px -8px rgb(27 42 47 / 0.18), 0 2px 6px rgb(27 42 47 / 0.06);
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  background: var(--color-canvas);
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "tnum" 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Finom csíkozás a teljesített idővonal-blokkokhoz */
+.hatch {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgb(255 255 255 / 0.55) 0 4px,
+    transparent 4px 8px
+  );
+}
+
+/* Leaflet finomhangolás */
+.leaflet-container {
+  font-family: var(--font-sans);
+  background: var(--color-subtle);
+}
+.leaflet-tooltip.map-label {
+  background: rgb(255 255 255 / 0.94);
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+  box-shadow: var(--shadow-card);
+  color: var(--color-ink);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 6px;
+}
+.leaflet-tooltip.map-label::before {
+  display: none;
+}
+.vehicle-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  color: white;
+  font: 600 10px/1 var(--font-mono);
+  border: 2px solid white;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.25);
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgb(139 44 58 / 0.35);
+  }
+  100% {
+    box-shadow: 0 0 0 10px rgb(139 44 58 / 0);
+  }
+}
+.pulse-urgent {
+  animation: pulse-ring 1.8s ease-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pulse-urgent {
+    animation: none;
+  }
+}
